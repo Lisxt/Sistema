@@ -3,7 +3,7 @@ package Sistema;
 public class Curso {
 
 	//ATRIBUTOS
-	String NomeoiCurso;
+	String NomeCurso;
 	int cargaHoraria;
 	String professor;
 	
