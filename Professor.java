@@ -22,7 +22,7 @@ public class Professor extends Pessoa{
 	}
 
 	@Override
-	public void exibirDdos() {
+	public void exibirDados() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -29,7 +29,7 @@ public abstract class Pessoa{
 		this.idade = idade;
 	}
 	
-	public abstract void exibirDdos();
+	public abstract void exibirDados();
 	
 	
 	
