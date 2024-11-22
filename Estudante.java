@@ -63,15 +63,15 @@ public class Estudante extends Pessoa {
     public static void excluirEstudante(String nome) {
         for (int i = 0; i < estudantes.size(); i++) {
             Estudante estudante = estudantes.get(i);
-            if (estudante.getNome().equals(nome)) {
+            if (estudante.getNome().equalsIgnoreCase(nome)) { // Ignora maiúsculas/minúsculas
                 estudante.exclusao();
                 estudantes.remove(i);
                 System.out.println("Estudante " + nome + " excluído com sucesso.");
                 return;
+            }
         }
         System.out.println("Estudante com o nome " + nome + " não encontrado.");
     }
-}
    // Método exclusão
         public void exclusao() {
             setNome(null);
