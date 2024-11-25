@@ -18,10 +18,10 @@ public class Curso {
 	private static List<Curso> cursos = new ArrayList<>();
 	
 	//CONSTRUTOR
-	public Curso(String nomeCurso, int cargaHoraria, Professor professor) {
+	public Curso(String nomeCurso, int cargaHoraria) {
 		this.NomeCurso = nomeCurso;
 		this.cargaHoraria = cargaHoraria;
-		this.professor = professor;
+		this.professor = null;
 		this.estudantes = new ArrayList<>();
 	}
 	
@@ -38,12 +38,15 @@ public class Curso {
 	public void setCargaHoraria(int cargaHoraria) {
 		this.cargaHoraria = cargaHoraria;
 	}
-	public Professor getProfessor() {
-		return  professor;
-	}
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
-	}
+	 public Professor getProfessor() {
+	        return professor;
+	    }
+
+	    // MÉTODO PARA ASSOCIAR PROFESSOR APÓS O CADASTRO DO CURSO
+	    public void associarProfessor(Professor professor) {
+	        this.professor = professor;
+	        System.out.println("Professor " + professor.getNome() + " associado ao curso " + NomeCurso + ".");
+	    }
 	
 	public List<Estudante> getEstudantes() {
         return estudantes;
@@ -54,20 +57,21 @@ public class Curso {
 	//METODOS
 	// Método para exibir dados do curso
 	public void exibirDados() {
-	    System.out.println("Nome: " + getNomeCurso() +
-	            "\nCarga Horaria: " + getCargaHoraria() +
-	            "\nProfessor responsável pelo curso: " + getProfessor());
+        System.out.println("Nome: " + getNomeCurso() +
+                "\nCarga Horaria: " + getCargaHoraria() +
+                "\nProfessor responsável pelo curso: " +
+                (professor != null ? professor.getNome() : "Nenhum professor associado."));
 
-	    if (estudantes.isEmpty()) {
-	        System.out.println("Alunos do Curso: Nenhum aluno matriculado.");
-	    } else {
-	        System.out.println("Quantidade de Alunos: " + estudantes.size());
-	        System.out.println("Nomes dos Alunos:");
-	        for (Estudante estudante : estudantes) {
-	            System.out.println("- " + estudante.getNome());
-	        }
-	    }
-	}
+        if (estudantes.isEmpty()) {
+            System.out.println("Alunos do Curso: Nenhum aluno matriculado.");
+        } else {
+            System.out.println("Quantidade de Alunos: " + estudantes.size());
+            System.out.println("Nomes dos Alunos:");
+            for (Estudante estudante : estudantes) {
+                System.out.println("- " + estudante.getNome());
+            }
+        }
+    }
 
     
     // Método para exibir todos os cursos
@@ -109,7 +113,7 @@ public class Curso {
     
      // Método exclusão
         public void exclusao() {
-            setNomeCurso(null); setCargaHoraria(0); setProfessor(null);
+            setNomeCurso(null); setCargaHoraria(0); this.professor = null;
             System.out.println("Dados do curso foram excluídos com sucesso!");
         }
         
