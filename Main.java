@@ -1,41 +1,50 @@
-package Sistema;
+package Pessoas;
+import GerenciarCurso.Curso;
+import GerenciarCurso.Relatorios;
 
 public class Main {
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-	//	JanelaPrincipal janelaPrincipal = new JanelaPrincipal();
-	//	janelaPrincipal.setVisible(true);
-		
-		 // Cadastrando Professores
-        Professor.cadastrarProfessor("Carlos Silva", 40, "Matemática");
-        Professor.cadastrarProfessor("Ana Pereira", 35, "Física");
+		       
+				//criar PROFESSORES
+				Professor professor1 = new Professor("Maria", 35, "Matemática");
+				Professor professor2 = new Professor("Matheus", 60, "Física");
+				//cadastrar PROFESSORES
+				Professor.cadastrarProfessor(professor1);
+				Professor.cadastrarProfessor(professor2);
+				
+				//criar CURSO
+				Curso curso1 = new Curso("Programação", 60, professor1);
+				Curso curso2 = new Curso("Estrutura de Dados", 180, professor2);
+				//cadastrar CURSO
+				Curso.cadastrarCurso(curso1);
+				Curso.cadastrarCurso(curso2);
+				
+				//criar ESTUDANTE
+				Estudante estudante1 = new Estudante("João", 20, "12345");
+		        Estudante estudante2 = new Estudante("Julia", 35, "14555");
+		        //matricular ESTUDANTE
+		        Estudante.cadastrarEstudante(estudante1);
+		        Estudante.cadastrarEstudante(estudante2);
+		        
+		        //matricula aluno no curso
+		        curso1.matricularEstudante(estudante1);
+		        curso2.matricularEstudante(estudante2);
+		        
+		        // Editar o curso
+		        //Curso.exibirTodosCursos();
+		      //Curso.editarCurso("Programação", "Algoritmos", 80);
+		        System.out.println("------------------------");
+		        Estudante.exibirTodosEstudantes();
+		        System.out.println("------------------------");
+		        Professor.exibirTodosProfessores();
+		        System.out.println("------------------------");
+		      //Estudante.editarEstudante("João", "Juciene", 28);
+		       //Curso.excluirCurso("Programação");
+		       //System.out.println("------------------------");
+		        Curso.exibirTodosCursos();
+		    
+		    }
 
-        // Cadastrando Estudantes
-        Estudante.cadastrarEstudante("João Santos", 20, "2023001");
-        Estudante.cadastrarEstudante("Maria Oliveira", 22, "2023002");
-
-        // Exibindo todos os Professores e Estudantes
-        System.out.println("\nLista de Professores:");
-        Professor.exibirTodosEstudantes();
-        System.out.println("\nLista de Estudantes:");
-        Estudante.exibirTodosEstudantes();
-
-        // Editando e exibindo novamente
-        Professor.editarProfessor("Carlos Silva", "Carlos Alberto Silva", 41, "Matemática Avançada");
-        Estudante.editarEstudante("João Santos", "João Pedro Santos", 21, "2023001-A");
-        
-        System.out.println("\nApós edição:");
-        Professor.exibirTodosEstudantes();
-        Estudante.exibirTodosEstudantes();
-
-        // Excluindo e exibindo novamente
-        Professor.excluirProfessor("Ana Pereira");
-        Estudante.excluirEstudante("Maria Oliveira");
-
-        System.out.println("\nApós exclusão:");
-        Professor.exibirTodosEstudantes();
-        Estudante.exibirTodosEstudantes();
 	}
 
-}
+
