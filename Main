@@ -1,0 +1,41 @@
+package Main;
+import dao.CursoDAO;
+import dao.EstudanteDAO;
+import dao.ProfessorDAO;
+
+public class Main {
+	public static void main(String[] args) {
+        EstudanteDAO estudante = new EstudanteDAO("João Silva", 22, "123456789");
+        estudante.CadastrarEstudante(estudante);
+        EstudanteDAO estudante1 = new EstudanteDAO("Maria", 18, "252525");
+        estudante1.CadastrarEstudante(estudante1);
+        
+        ProfessorDAO professor = new ProfessorDAO("Guilherme", 50, "fisica");
+        professor.CadastrarProfessor(professor);
+        ProfessorDAO professor1 = new ProfessorDAO("Joao", 70, "historia");
+       professor.CadastrarProfessor(professor1);
+        
+        CursoDAO curso = new CursoDAO("Logica de Programação", 180);
+        curso.CadastrarCurso(curso);
+        CursoDAO curso1 = new CursoDAO("Matematica", 60);
+        curso.CadastrarCurso(curso1);
+        
+           CursoDAO cursoDAO = new CursoDAO(null, 0);
+           cursoDAO.AssociarProfessorAoCurso(professor, curso);
+          cursoDAO.AssociarEstudanteAoCurso(estudante, curso);
+      //    cursoDAO.AssociarEstudanteAoCurso(estudante1, curso);
+        
+          estudante.EditarEstudante("Maria Silva", 30, "João Silva");
+           professor.EditarProfessor("Vinicios davi", "quimica", "Guilherme");
+           curso.EditarCurso("EXPERIENCIA DE ux", 30, "Logica de Programação");
+        
+ //       estudante.ExcluirEstudante("João Silva");
+ //       professor.ExcluirProfessor("Guilherme");
+          
+        
+        
+        
+    }
+	}
+
+
