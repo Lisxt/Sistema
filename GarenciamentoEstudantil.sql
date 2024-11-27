@@ -88,27 +88,53 @@ CREATE TABLE Estudante_Curso (
     FOREIGN KEY (estudante_nome) REFERENCES Estudante(nome),
     FOREIGN KEY (curso_nome) REFERENCES Curso(nome)
 );
-
+-- alterar o estudante
 ALTER TABLE estudante_curso
 DROP FOREIGN KEY estudante_curso_ibfk_1;
 ALTER TABLE estudante_curso
 ADD CONSTRAINT estudante_curso_ibfk_1 FOREIGN KEY (estudante_nome) REFERENCES estudante(nome) ON UPDATE CASCADE;
 
+-- alterar o curso
 ALTER TABLE estudante_curso
 DROP FOREIGN KEY estudante_curso_ibfk_2;
 ALTER TABLE estudante_curso
 ADD CONSTRAINT estudante_curso_ibfk_2 FOREIGN KEY (curso_nome) REFERENCES curso(nome) ON UPDATE CASCADE ON DELETE CASCADE;
 
+-- alterar professor
 ALTER TABLE professor_curso
 DROP FOREIGN KEY professor_curso_ibfk_1;
 ALTER TABLE professor_curso
 ADD CONSTRAINT professor_curso_ibfk_1 FOREIGN KEY (professor_nome) REFERENCES professor(nome) ON UPDATE CASCADE;
 
+-- alterar o curso
 ALTER TABLE professor_curso
 DROP FOREIGN KEY professor_curso_ibfk_2;
 ALTER TABLE professor_curso
 ADD CONSTRAINT professor_curso_ibfk_2 FOREIGN KEY (curso_nome) REFERENCES curso(nome) ON UPDATE CASCADE ON DELETE CASCADE;
 
+-- excluir estudante
+ALTER TABLE estudante_curso
+DROP FOREIGN KEY estudante_curso_ibfk_2;
+ALTER TABLE estudante_curso
+ADD CONSTRAINT estudante_curso_ibfk_1 FOREIGN KEY (estudante_nome) REFERENCES estudante(nome) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- excluir o curso
+ALTER TABLE estudante_curso
+DROP FOREIGN KEY estudante_curso_ibfk_2;
+ALTER TABLE estudante_curso
+ADD CONSTRAINT estudante_curso_ibfk_2 FOREIGN KEY (curso_nome) REFERENCES curso(nome) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- excluir professor
+ALTER TABLE professor_curso
+DROP FOREIGN KEY professor_curso_ibfk_1;
+ALTER TABLE professor_curso
+ADD CONSTRAINT professor_curso_ibfk_1 FOREIGN KEY (professor_nome) REFERENCES professor(nome) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- excluir o curso
+ALTER TABLE professor_curso
+DROP FOREIGN KEY professor_curso_ibfk_2;
+ALTER TABLE professor_curso
+ADD CONSTRAINT professor_curso_ibfk_2 FOREIGN KEY (curso_nome) REFERENCES curso(nome) ON DELETE CASCADE ON UPDATE CASCADE;
 
 SELECT * FROM estudante;
 SELECT * FROM curso;
