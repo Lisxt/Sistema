@@ -1,20 +1,32 @@
-package Main;
-import dao.CursoDAO;
-import dao.EstudanteDAO;
-import dao.ProfessorDAO;
+package Main; 
 
-public class MainAssociações {
-	public static void main(String[] args) {
+import dao.CursoDAO; // Importa a classe CursoDAO, responsável pelas operações relacionadas aos cursos.
+import dao.EstudanteDAO; // Importa a classe EstudanteDAO, responsável pelas operações relacionadas aos estudantes.
+import dao.ProfessorDAO; // Importa a classe ProfessorDAO, responsável pelas operações relacionadas aos professores.
+
+public class MainAssociações { // Declaração da classe principal 'MainAssociações'.
+
+    public static void main(String[] args) { // Método principal, ponto de entrada da aplicação.
+
+        // Criação de um objeto 'EstudanteDAO' com os dados
         EstudanteDAO estudante = new EstudanteDAO("João Silva", 22, "123456789");
-        estudante.CadastrarEstudante(estudante);
+        estudante.CadastrarEstudante(estudante); // Chama o método 'CadastrarEstudante' para cadastrar o estudante no sistema.
+        
+        // Criação de um objeto 'ProfessorDAO' com os dados 
         ProfessorDAO professor = new ProfessorDAO("Guilherme", 50, "fisica");
-        professor.CadastrarProfessor(professor);
+        professor.CadastrarProfessor(professor); // Chama o método 'CadastrarProfessor' para cadastrar o professor no sistema.
         
+        // Criação de um objeto 'CursoDAO' com os dados 
         CursoDAO curso = new CursoDAO("Logica de Programação", 180);
-        curso.CadastrarCurso(curso);
+        curso.CadastrarCurso(curso); // Chama o método 'CadastrarCurso' para cadastrar o curso no sistema.
         
+        // Criação de um objeto 'CursoDAO' vazio 
         CursoDAO cursoDAO = new CursoDAO(null, 0);
+        
+        // Associa o professor ao curso utilizando o método 'AssociarProfessorAoCurso' da classe CursoDAO.
         cursoDAO.AssociarProfessorAoCurso(professor, curso);
+        
+        // Associa o estudante ao curso utilizando o método 'AssociarEstudanteAoCurso' da classe CursoDAO.
         cursoDAO.AssociarEstudanteAoCurso(estudante, curso);
     }
 }
