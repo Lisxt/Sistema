@@ -1,38 +1,39 @@
-package Util;
+package Util;  //Define o pacote Util, onde a classe Conexao está localizada.
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.Connection;  //Importa a classe Connection do pacote java.sql, que será usada para estabelecer a conexão com o banco de dados.
+import java.sql.DriverManager;  //Importa a classe DriverManager do pacote java.sql, que gerencia as conexões JDBC.
+import java.sql.SQLException;  //Importa a classe SQLException, usada para manipular exceções relacionadas ao SQL.
 
-public class Conexao {
+public class Conexao {  //classe Conexao, que gerencia a conexão com o banco de dados.
 
-    private static final String URL = "jdbc:mysql://localhost:/GerenciamentoEstudantil";
-    private static final String USER = "";
-    private static final String PASSWORD = "";
-    private static Connection conexao;
+    private static final String URL = "jdbc:mysql://localhost:/GerenciamentoEstudantil";  //URL de conexão com o banco de dados (MySQL) e o nome do banco de dados 'GerenciamentoEstudantil'.
+    private static final String USER = "";  //nome de usuário para acessar o banco de dados 
+    private static final String PASSWORD = "";  //senha para acessar o banco de dados
+    private static Connection conexao;  //Declara a variável estática 'conexao',para armazenar a conexão com o banco de dados.
 
-    private Conexao() {
-        // Previne a criação de instâncias
+    private Conexao() {  
+        //Previne a criação de instâncias
     }
 
-    public static Connection getConnection() {
-        if (conexao == null) {
+    public static Connection getConnection() {  //Método estático que retorna a conexão com o banco de dados
+        if (conexao == null) {  //Verifica se a conexão ainda não foi criada.
             try {
+                //Tenta estabelecer uma nova conexão com o banco de dados 
                 conexao = DriverManager.getConnection(URL, USER, PASSWORD);
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Erro ao conectar ao banco de dados", e);
+            } catch (SQLException e) {  
+                e.printStackTrace();  
+                throw new RuntimeException("Erro ao conectar ao banco de dados", e);  // Lança uma nova exceção, passando a mensagem de erro e a causa original.
             }
         }
-        return conexao;
+        return conexao;  //Retorna a conexão com o banco de dados (pode ser a conexão recém-criada ou uma já existente).
     }
 
-    public static void closeConnection() {
-        if (conexao != null) {
+    public static void closeConnection() {  // Método estático que fecha a conexão com o banco de dados.
+        if (conexao != null) {  //Verifica se há uma conexão aberta.
             try {
-                conexao.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+                conexao.close();  //Tenta fechar a conexão com o banco de dados.
+            } catch (SQLException e) {  //Caso ocorra um erro ao tentar fechar a conexão, captura a exceção SQLException.
+                e.printStackTrace();  //Exibe o stack trace do erro (informações detalhadas sobre a exceção).
             }
         }
     }
