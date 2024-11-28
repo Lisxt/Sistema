@@ -1,13 +1,9 @@
 package dao;
 import model.Pessoa;
+
 import Util.Conexao;
 
 import java.sql.*;
-//import java.util.ArrayList;
-//import java.util.List;
-import java.util.ArrayList;
-import java.util.List;
-
 public class ProfessorDAO extends Pessoa {
 
     private Connection conexao;
@@ -67,24 +63,11 @@ public class ProfessorDAO extends Pessoa {
         }
     }
 
-	public  List<EstudanteDAO> exibirDados() {
-		List<ProfessorDAO> profs = new ArrayList<>();
-        String sql = "SELECT * FROM EstudanteDAO";
-        try (Statement stmt = conexao.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-            	ProfessorDAO prof = new ProfessorDAO(rs.getString("nome"), rs.getInt("idade"), rs.getString("especialidade"));
-                profs.add(prof);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-		return null;
-        
-    }
 
 	@Override
 	public void exibirdados() {
-		// TODO Auto-generated method stub
+		System.out.println("Nome: " + getNome() + 
+		        "\nIdade: " + getIdade() + "\nEspecialidade: " + getEspecialidade());
 		
 	}
 }
