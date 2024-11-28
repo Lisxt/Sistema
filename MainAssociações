@@ -1,0 +1,20 @@
+package Main;
+import dao.CursoDAO;
+import dao.EstudanteDAO;
+import dao.ProfessorDAO;
+
+public class MainAssociações {
+	public static void main(String[] args) {
+        EstudanteDAO estudante = new EstudanteDAO("João Silva", 22, "123456789");
+        estudante.CadastrarEstudante(estudante);
+        ProfessorDAO professor = new ProfessorDAO("Guilherme", 50, "fisica");
+        professor.CadastrarProfessor(professor);
+        
+        CursoDAO curso = new CursoDAO("Logica de Programação", 180);
+        curso.CadastrarCurso(curso);
+        
+        CursoDAO cursoDAO = new CursoDAO(null, 0);
+        cursoDAO.AssociarProfessorAoCurso(professor, curso);
+        cursoDAO.AssociarEstudanteAoCurso(estudante, curso);
+    }
+}
