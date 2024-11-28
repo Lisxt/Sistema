@@ -1,41 +1,222 @@
 package Main;
+import java.util.Scanner;
 import dao.CursoDAO;
 import dao.EstudanteDAO;
 import dao.ProfessorDAO;
 
 public class Main {
+
 	public static void main(String[] args) {
-        EstudanteDAO estudante = new EstudanteDAO("João Silva", 22, "123456789");
-        estudante.CadastrarEstudante(estudante);
-        EstudanteDAO estudante1 = new EstudanteDAO("Maria", 18, "252525");
-        estudante1.CadastrarEstudante(estudante1);
-        
-        ProfessorDAO professor = new ProfessorDAO("Guilherme", 50, "fisica");
-        professor.CadastrarProfessor(professor);
-        ProfessorDAO professor1 = new ProfessorDAO("Joao", 70, "historia");
-       professor.CadastrarProfessor(professor1);
-        
-        CursoDAO curso = new CursoDAO("Logica de Programação", 180);
-        curso.CadastrarCurso(curso);
-        CursoDAO curso1 = new CursoDAO("Matematica", 60);
-        curso.CadastrarCurso(curso1);
-        
-           CursoDAO cursoDAO = new CursoDAO(null, 0);
-           cursoDAO.AssociarProfessorAoCurso(professor, curso);
-          cursoDAO.AssociarEstudanteAoCurso(estudante, curso);
-      //    cursoDAO.AssociarEstudanteAoCurso(estudante1, curso);
-        
-          estudante.EditarEstudante("Maria Silva", 30, "João Silva");
-           professor.EditarProfessor("Vinicios davi", "quimica", "Guilherme");
-           curso.EditarCurso("EXPERIENCIA DE ux", 30, "Logica de Programação");
-        
- //       estudante.ExcluirEstudante("João Silva");
- //       professor.ExcluirProfessor("Guilherme");
-          
-        
-        
-        
+		        Scanner scanner = new Scanner(System.in);
+		        
+		        EstudanteDAO estudanteDAO = new EstudanteDAO(null, 0, null);
+		        ProfessorDAO professorDAO = new ProfessorDAO(null, 0, null);
+		        CursoDAO cursoDAO = new CursoDAO(null, 0);
+		        
+	while (true) {
+        System.out.println("\n=== Menu Principal ===");
+        System.out.println("1. Gerenciar Estudantes");
+        System.out.println("2. Gerenciar Professores");
+        System.out.println("3. Gerenciar Cursos");
+        System.out.println("4. Sair");
+        System.out.print("Escolha uma opção: ");
+
+        int opcaoPrincipal = scanner.nextInt();
+        scanner.nextLine(); // Limpa o buffer
+
+        switch (opcaoPrincipal) {
+            case 1: // Menu de Estudantes
+                System.out.println("\n--- Gerenciar Estudantes ---");
+                System.out.println("1. Cadastrar Estudante");
+                System.out.println("2. Editar Estudante");
+                System.out.println("3. Excluir Estudante");
+                System.out.println("4. Exibir dados");
+                System.out.println("5. Voltar ao Menu Principal");
+                System.out.print("Escolha uma opção: ");
+                
+                int opcaoEstudante = scanner.nextInt();
+                scanner.nextLine(); // Limpa o buffer
+
+                switch (opcaoEstudante) {
+                    case 1:
+                        System.out.println("Cadastrando estudante...");
+                        System.out.print("Nome do Estudante: ");
+	                    String nomeE = scanner.nextLine();
+	                    System.out.print("Idade: ");
+	                    int idadeE = scanner.nextInt();
+	                    scanner.nextLine(); // Limpa o buffer
+	                    System.out.print("Matrícula: ");
+	                    String matricula = scanner.nextLine();
+	                    EstudanteDAO novoEstudante = new EstudanteDAO(nomeE, idadeE, matricula);
+	                    estudanteDAO.CadastrarEstudante(novoEstudante);
+	                    break;
+                    case 2:
+                        System.out.println("Editando estudante...");
+                        System.out.print("Nome atual do Estudante: ");
+	                    String nomeEAtual = scanner.nextLine();
+	                    System.out.print("Novo Nome: ");
+	                    String novoNome = scanner.nextLine();
+	                    System.out.print("Nova Idade: ");
+	                    int novaIdade = scanner.nextInt();
+	                    scanner.nextLine(); // Limpa o buffer
+	                    estudanteDAO.EditarEstudante(novoNome, novaIdade, nomeEAtual);
+                        break;
+                    case 3:
+                        System.out.println("Excluindo estudante...");
+                        System.out.print("Nome do Estudante a excluir: ");
+	                    String nomeExcluir = scanner.nextLine();
+	                    estudanteDAO.ExcluirEstudante(nomeExcluir);
+                        break;
+                    case 4:
+                        System.out.println("Voltando ao menu principal...");
+                        break;
+                    default:
+                        System.out.println("Opção inválida!");
+                }
+                break;
+
+            case 2: // Menu de Professores
+                System.out.println("\n--- Gerenciar Professores ---");
+                System.out.println("1. Cadastrar Professor");
+                System.out.println("2. Editar Professor");
+                System.out.println("3. Excluir Professor");
+                System.out.println("4. Voltar ao Menu Principal");
+                System.out.print("Escolha uma opção: ");
+
+                int opcaoProfessor = scanner.nextInt();
+                scanner.nextLine(); // Limpa o buffer
+
+                switch (opcaoProfessor) {
+                    case 1:
+                        System.out.println("Cadastrando professor...");
+                        System.out.print("Nome do Professor: ");
+	                    String nomeP = scanner.nextLine();
+	                    System.out.print("Idade: ");
+	                    int idadeP = scanner.nextInt();
+	                    scanner.nextLine(); // Limpa o buffer
+	                    System.out.print("Especialidade: ");
+	                    String especialidade = scanner.nextLine();
+	                    ProfessorDAO novoProfessor = new ProfessorDAO(nomeP, idadeP, especialidade);
+	                    professorDAO.CadastrarProfessor(novoProfessor);
+                        break;
+                    case 2:
+                        System.out.println("Editando professor...");
+                        System.out.print("Nome atual do Professor: ");
+	                    String nomePAtual = scanner.nextLine();
+	                    System.out.print("Novo Nome: ");
+	                    String novoNomeP = scanner.nextLine();
+	                    System.out.print("Nova Especialidade: ");
+	                    String novaEspecialidade = scanner.nextLine();
+	                    professorDAO.EditarProfessor(novoNomeP, novaEspecialidade, nomePAtual);
+                        break;
+                    case 3:
+                        System.out.println("Excluindo professor...");
+                        System.out.print("Nome do Professor a excluir: ");
+	                    String nomePExcluir = scanner.nextLine();
+	                    professorDAO.ExcluirProfessor(nomePExcluir);
+                        break;
+                    case 4:
+                        System.out.println("Voltando ao menu principal...");
+                        break;
+                    default:
+                        System.out.println("Opção inválida!");
+                }
+                break;
+
+            case 3: // Menu de Cursos
+                System.out.println("\n--- Gerenciar Cursos ---");
+                System.out.println("1. Cadastrar Curso");
+                System.out.println("2. Editar Curso");
+                System.out.println("3. Excluir Curso");
+                System.out.println("4. Vincular Alunos/Professores");
+                System.out.println("5. Voltar ao Menu Principal");
+                System.out.print("Escolha uma opção: ");
+
+                int opcaoCurso = scanner.nextInt();
+                scanner.nextLine(); // Limpa o buffer
+
+                switch (opcaoCurso) {
+                    case 1:
+                        System.out.println("Cadastrando curso...");
+                        System.out.print("Nome do Curso: ");
+	                    String nomeCurso = scanner.nextLine();
+	                    System.out.print("Carga Horária: ");
+	                    int cargaHoraria = scanner.nextInt();
+	                    scanner.nextLine(); // Limpa o buffer
+	                    CursoDAO novoCurso = new CursoDAO(nomeCurso, cargaHoraria);
+	                    cursoDAO.CadastrarCurso(novoCurso);
+	                    break;
+                    case 2:
+                        System.out.println("Editando curso...");
+                        System.out.print("Nome atual do Curso: ");
+	                    String nomeCAtual = scanner.nextLine();
+	                    System.out.print("Novo Nome do Curso: ");
+	                    String novoNomeC = scanner.nextLine();
+	                    System.out.print("Nova Carga Horária: ");
+	                    int novaCargaHoraria = scanner.nextInt();
+	                    scanner.nextLine(); // Limpa o buffer
+	                    cursoDAO.EditarCurso(novoNomeC, novaCargaHoraria, nomeCAtual);
+                        break;
+                    case 3:
+                        System.out.println("Excluindo curso...");
+                        System.out.print("Nome do Curso a excluir: ");
+	                    String nomeCursoExcluir = scanner.nextLine();
+	                    cursoDAO.ExcluirCurso(nomeCursoExcluir);
+                        break;
+                    case 4:
+                    	System.out.println("\nVincular Alunos/Professores...");
+                        System.out.println("1. Matricular Alunos");
+                        System.out.println("2. Associar Professores");
+                        System.out.println("3. Voltar ao menu principal");
+                        
+                        int opcao = scanner.nextInt();
+                        scanner.nextLine(); // Limpa o buffer
+                        
+                        switch (opcao) {
+                        case 1:
+                        	System.out.println("Matricular Alunos...");
+                        	System.out.println("Nome do Aluno:");
+                        	System.out.println("Curso:");
+                        	//String nomeE = scanner.nextLine();
+                        	//String nomeC = scanner.nextLine();
+                        	//scanner.nextLine();
+                        	//cursoDAO.AssociarEstudanteAoCurso(estudanteDAO, cursoDAO);
+                        	break;
+                        case 2:
+                        	System.out.println("Associar professores...");
+                        	System.out.println("Nome do Professor:");
+                        	System.out.println("Curso:");
+                        	//String nomeP = scanner.nextLine();
+                            //nomeC = scanner.nextLine();
+                        	//scanner.nextLine();
+                        	//cursoDAO.AssociarProfessorAoCurso(professorDAO, cursoDAO);
+                        	break;
+                        case 3:
+                        	System.out.println("Voltando ao menu principal...");
+                            break;
+                        default:
+                            System.out.println("Opção inválida!");
+                        }
+                    	break;
+                    case 5:
+                        System.out.println("Voltando ao menu principal...");
+                        break;
+                    default:
+                        System.out.println("Opção inválida!");
+                }
+                break;
+
+            case 4: // Sair
+                System.out.println("Saindo do sistema...");
+                scanner.close();
+                System.exit(0);
+                break;
+
+            default:
+                System.out.println("Opção inválida! Tente novamente.");
+        }
     }
-	}
+}
+		}
 
 
