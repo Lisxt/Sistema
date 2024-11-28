@@ -114,11 +114,12 @@ ADD CONSTRAINT professor_curso_ibfk_2 FOREIGN KEY (curso_nome) REFERENCES curso(
 
 -- excluir estudante
 ALTER TABLE estudante_curso
-DROP FOREIGN KEY estudante_curso_ibfk_2;
+DROP FOREIGN KEY estudante_curso_ibfk_1;
 ALTER TABLE estudante_curso
 ADD CONSTRAINT estudante_curso_ibfk_1 FOREIGN KEY (estudante_nome) REFERENCES estudante(nome) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- excluir o curso
+-- verificar
 ALTER TABLE estudante_curso
 DROP FOREIGN KEY estudante_curso_ibfk_2;
 ALTER TABLE estudante_curso
