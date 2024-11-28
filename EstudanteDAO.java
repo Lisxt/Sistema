@@ -1,11 +1,7 @@
 package dao;
 import model.Pessoa;
-
 import Util.Conexao;
-
 import java.sql.*;
-//import java.util.ArrayList;
-//import java.util.List;
 
 
 public class EstudanteDAO extends Pessoa {
@@ -68,9 +64,11 @@ public class EstudanteDAO extends Pessoa {
     }
     
     @Override
+    // Método para exibir dados do estudante
     public void exibirdados() {
-    	 
-        }
+        System.out.println("Nome: " + getNome() + 
+        "\nIdade: " + getIdade() + "\nMatrícula: " + getMatricula());
+     
     }
-
-
+    
+ }
